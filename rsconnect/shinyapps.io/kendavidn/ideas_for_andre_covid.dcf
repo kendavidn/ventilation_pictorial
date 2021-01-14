@@ -5,8 +5,8 @@ account: kendavidn
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 3473467
-bundleId: 4096166
+bundleId: 4096552
 url: https://kendavidn.shinyapps.io/ideas_for_andre_covid/
-when: 1610638696.43301
+when: 1610643871.05531
 asMultiple: FALSE
 asStatic: FALSE

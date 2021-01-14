@@ -77,10 +77,10 @@ gg.gauge <- function(pos,breaks=c(0,10,30,100)) {
 ui <-
   bs4DashPage(
     old_school = FALSE,
-    sidebar_min = FALSE,
+    sidebar_min = TRUE,
     sidebar_collapsed = FALSE,
     controlbar_collapsed = FALSE,
-    controlbar_overlay = TRUE,
+    controlbar_overlay = FALSE,
     title = "Map input vars to pictorial chart idea",
     navbar = bs4DashNavbar(
       sidebarIcon = "bars",
@@ -99,7 +99,7 @@ ui <-
     ),
     controlbar = bs4DashControlbar(
       skin = "light",
-      title = " Change parameters",
+      title = HTML("<br><br><br> Change parameters"),
       sliderInput(
         inputId = "size",
         label = "Room size (cubic metres):",
@@ -142,7 +142,7 @@ ui <-
       bs4TabItems(
         bs4TabItem(
           tabName = "tab1",
-      fluidRow(column(width = 9,
+      fluidRow(column(width = 12,
                       bs4Card(title = "Simulation",
                               closable = TRUE,
                               width = 12,
@@ -150,10 +150,10 @@ ui <-
                               solidHeader = TRUE,
                               collapsible = TRUE,
                               plotOutput("room_plot")))),
-        fluidRow(column(width = 9,
+        fluidRow(column(width = 12,
                         bs4Card(title = "Risk",
                                 closable = TRUE,
-                                width = 5,
+                                width = 12,
                                 gradientColor = "success",
                                 solidHeader = TRUE,
                                 collapsible = TRUE,
@@ -273,7 +273,9 @@ server <- function(input, output) {
                      size = 3,
                      color = "skyblue") +
     scale_x_continuous(trans = pseudolog10_trans, limits = c(-27.95085 - 1, 27.95085 + 1 ) ) + 
-    scale_y_continuous(trans = pseudolog10_trans, limits = c(-27.95085 - 1 , 27.95085 + 1) ) + coord_fixed() 
+    scale_y_continuous(trans = pseudolog10_trans, limits = c(-27.95085 - 1 , 27.95085 + 1) ) + 
+    coord_fixed() + 
+    theme_void()
       
   icon_positions <- ((round((100*-bounds())) : round((100*bounds())))/100)
   position_weights <- 1 - (abs(icon_positions)/30)
